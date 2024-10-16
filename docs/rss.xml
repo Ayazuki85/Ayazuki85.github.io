@@ -1,4 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>个人博客(建设中......)</title><link>https://Ayazuki85.github.io</link><description>建设中……</description><copyright>个人博客(建设中......)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&amp;v=4</url><title>avatar</title><link>https://Ayazuki85.github.io</link></image><lastBuildDate>Wed, 16 Oct 2024 01:39:53 +0000</lastBuildDate><managingEditor>个人博客(建设中......)</managingEditor><ttl>60</ttl><webMaster>个人博客(建设中......)</webMaster><item><title>Title</title><link>https://Ayazuki85.github.io/post/Title.html</link><description># 网络安全实训&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>个人博客(建设中......)</title><link>https://Ayazuki85.github.io</link><description>建设中……</description><copyright>个人博客(建设中......)</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&amp;v=4</url><title>avatar</title><link>https://Ayazuki85.github.io</link></image><lastBuildDate>Wed, 16 Oct 2024 01:51:47 +0000</lastBuildDate><managingEditor>个人博客(建设中......)</managingEditor><ttl>60</ttl><webMaster>个人博客(建设中......)</webMaster><item><title>WiFi协议分析</title><link>https://Ayazuki85.github.io/post/WiFi-xie-yi-fen-xi.html</link><description># 任务&#13;
+自建环境，抓包分析WiFi连接过程：&#13;
+     WiFi扫描（主动扫描；被动扫描）&#13;
+     WiFi认证&#13;
+     WiFi关联&#13;
+     数据传输&#13;
+# 要求&#13;
+使用抓包软件进行抓包分析，每一步需要截图&#13;
+# 实验原理&#13;
+![原理](https://github.com/user-attachments/assets/5d4f5c06-6788-4106-9324-b5f0c3e4220f)&#13;
+。</description><guid isPermaLink="true">https://Ayazuki85.github.io/post/WiFi-xie-yi-fen-xi.html</guid><pubDate>Wed, 16 Oct 2024 01:47:38 +0000</pubDate></item><item><title>Title</title><link>https://Ayazuki85.github.io/post/Title.html</link><description># 网络安全实训&#13;
 [网络安全技术实训报告.docx](https://github.com/user-attachments/files/17388000/default.docx)&#13;
 。</description><guid isPermaLink="true">https://Ayazuki85.github.io/post/Title.html</guid><pubDate>Wed, 16 Oct 2024 01:11:59 +0000</pubDate></item></channel></rss>
