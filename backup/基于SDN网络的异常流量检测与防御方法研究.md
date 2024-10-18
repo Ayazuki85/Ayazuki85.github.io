@@ -55,12 +55,12 @@ sudo ovs-vsctl -- --id=@sflow create sflow agent=s1-eth0 target=\"127.0.0.1:6343
 5.在浏览器中输入网址localhost:8008/html/index.html，我们可以通过其WebUI进行查看Agent 是否配置成功，配置成功的话可以看见各项监控状态。
 ![是否配置成功](https://github.com/user-attachments/assets/6989147c-3404-4288-b1e4-a962eade870a)
 6.我们现在切换到mininet终端
-使用如下指令：```xterm h1 h2 ```，打开 Host1，和Host2的终端；
-然后在 Host1 上启动一个 http 服务：```python3 -m http.server 80&```
+使用如下指令：`xterm h1 h2 `，打开 Host1，和Host2的终端；
+然后在 Host1 上启动一个 http 服务：`python3 -m http.server 80&`
 此时让h2正常的 ping h1，观察此时的情况，未发现异常。
 ![正常Ping](https://github.com/user-attachments/assets/978e76d2-a2c2-4c16-92d7-f38786719fde)
 7.现在开始模拟DDoS攻击
-在h2终端上使用命令``` h2 ping -f 10.0.0.1```
+在h2终端上使用命令` h2 ping -f 10.0.0.1`
 再观察此时的情况
 ![被DDOS](https://github.com/user-attachments/assets/5ffbf5de-4fe4-4da6-b17a-42e0f2120de7)
 8.现在进行DDOS防御
@@ -68,22 +68,40 @@ sudo ovs-vsctl -- --id=@sflow create sflow agent=s1-eth0 target=\"127.0.0.1:6343
 ![防御1](https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398)
 为了抑制攻击流，我们需要添加流表。
 我们下发流表控制从交换机的端口1经过的流量，url填写为 http://localhost:8080/stats/flowentry/add
-功能选择post方式，在Body中选择JSON进行流表的编写。
-dpid代表交换机的号
-priority表示优先级，优先级数字越大表示越优先处理
-在match写入的in_port代表交换机输入端口为1的端口
-dl_type字段代表ip协议，其中2048的16进制0x0800代表ipv4协议
-nw_proto代表:ip协议上搭载的协议类型，其中1代表icmp协议
-在本实验中也就是h1连接交换机的端口，actions中为空，表示交换机对于h1的流量不作任何处理。编写完成后，点击send进行流表下发，如果发送成功会返回200 OK。
+**功能选择post方式**
+**在Body中选择JSON进行流表的编写。**
+**dpid代表交换机的号**
+**priority表示优先级，优先级数字越大表示越优先处理**
+**在match写入的in_port代表交换机输入端口为1的端口**
+**dl_type字段代表ip协议，其中2048的16进制0x0800代表ipv4协议**
+**nw_proto代表:ip协议上搭载的协议类型，其中1代表icmp协议**
+在本实验中也就是h1连接交换机的端口，actions中为空，表示交换机对于h1的流量不作任何处理。
+编写完成后，点击send进行流表下发，如果发送成功会返回200 OK。
+```JSON
+{
+    "dpid": 1,
+    "table_id": 0,
+    "idle_timeout": 30,
+    "hard_timeout": 30,
+    "priority": 65535,
+    "flags": 1,
+    "match": {
+        "in_port": 1,
+        "dl_type": 2048,
+        "nw_proto": 1
+    },
+    "actions": []
+}
+```
 ![防御2](https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9)
 此时我们再观察一下情况，发现情况已经趋向于正常
 ![正常](https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd)
 # 参考文献:
-Ubuntu22.04安装mininet和ryu：
+**Ubuntu22.04安装mininet和ryu：**
 https://blog.csdn.net/2301_76203161/article/details/135979942
-SDN实验：使用mininet和RYU实现DDoS攻击与防御模拟: 
+**SDN实验：使用mininet和RYU实现DDoS攻击与防御模拟:** 
 https://blog.csdn.net/weixin_45236003/article/details/132622991
-sFlow-rt 3.0流量监控工具安装部署及简单实验：
+**sFlow-rt 3.0流量监控工具安装部署及简单实验：**
 https://blog.csdn.net/Call_Me_JHZ/article/details/105465768
-Mininet+Ryu安装教程_ubuntu安装mininet和ryu最新csdn
+**Mininet+Ryu安装教程_ubuntu安装mininet和ryu最新csdn**
 https://blog.csdn.net/2401_84010784/article/details/137664161

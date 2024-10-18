@@ -152,24 +152,40 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398"><img src="https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398" alt="防御1" style="max-width: 100%;"></a><br>
 为了抑制攻击流，我们需要添加流表。<br>
 我们下发流表控制从交换机的端口1经过的流量，url填写为 <a href="http://localhost:8080/stats/flowentry/add" rel="nofollow">http://localhost:8080/stats/flowentry/add</a><br>
-功能选择post方式，在Body中选择JSON进行流表的编写。<br>
-dpid代表交换机的号<br>
-priority表示优先级，优先级数字越大表示越优先处理<br>
-在match写入的in_port代表交换机输入端口为1的端口<br>
-dl_type字段代表ip协议，其中2048的16进制0x0800代表ipv4协议<br>
-nw_proto代表:ip协议上搭载的协议类型，其中1代表icmp协议<br>
-在本实验中也就是h1连接交换机的端口，actions中为空，表示交换机对于h1的流量不作任何处理。编写完成后，点击send进行流表下发，如果发送成功会返回200 OK。<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9"><img src="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9" alt="防御2" style="max-width: 100%;"></a><br>
+<strong>功能选择post方式</strong><br>
+<strong>在Body中选择JSON进行流表的编写。</strong><br>
+<strong>dpid代表交换机的号</strong><br>
+<strong>priority表示优先级，优先级数字越大表示越优先处理</strong><br>
+<strong>在match写入的in_port代表交换机输入端口为1的端口</strong><br>
+<strong>dl_type字段代表ip协议，其中2048的16进制0x0800代表ipv4协议</strong><br>
+<strong>nw_proto代表:ip协议上搭载的协议类型，其中1代表icmp协议</strong><br>
+在本实验中也就是h1连接交换机的端口，actions中为空，表示交换机对于h1的流量不作任何处理。<br>
+编写完成后，点击send进行流表下发，如果发送成功会返回200 OK。</p>
+<div class="highlight highlight-source-json"><pre class="notranslate">{
+    <span class="pl-ent">"dpid"</span>: <span class="pl-c1">1</span>,
+    <span class="pl-ent">"table_id"</span>: <span class="pl-c1">0</span>,
+    <span class="pl-ent">"idle_timeout"</span>: <span class="pl-c1">30</span>,
+    <span class="pl-ent">"hard_timeout"</span>: <span class="pl-c1">30</span>,
+    <span class="pl-ent">"priority"</span>: <span class="pl-c1">65535</span>,
+    <span class="pl-ent">"flags"</span>: <span class="pl-c1">1</span>,
+    <span class="pl-ent">"match"</span>: {
+        <span class="pl-ent">"in_port"</span>: <span class="pl-c1">1</span>,
+        <span class="pl-ent">"dl_type"</span>: <span class="pl-c1">2048</span>,
+        <span class="pl-ent">"nw_proto"</span>: <span class="pl-c1">1</span>
+    },
+    <span class="pl-ent">"actions"</span>: []
+}</pre></div>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9"><img src="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9" alt="防御2" style="max-width: 100%;"></a><br>
 此时我们再观察一下情况，发现情况已经趋向于正常<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd"><img src="https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd" alt="正常" style="max-width: 100%;"></a></p>
 <h1>参考文献:</h1>
-<p>Ubuntu22.04安装mininet和ryu：<br>
+<p><strong>Ubuntu22.04安装mininet和ryu：</strong><br>
 <a href="https://blog.csdn.net/2301_76203161/article/details/135979942" rel="nofollow">https://blog.csdn.net/2301_76203161/article/details/135979942</a><br>
-SDN实验：使用mininet和RYU实现DDoS攻击与防御模拟:<br>
+<strong>SDN实验：使用mininet和RYU实现DDoS攻击与防御模拟:</strong><br>
 <a href="https://blog.csdn.net/weixin_45236003/article/details/132622991" rel="nofollow">https://blog.csdn.net/weixin_45236003/article/details/132622991</a><br>
-sFlow-rt 3.0流量监控工具安装部署及简单实验：<br>
+<strong>sFlow-rt 3.0流量监控工具安装部署及简单实验：</strong><br>
 <a href="https://blog.csdn.net/Call_Me_JHZ/article/details/105465768" rel="nofollow">https://blog.csdn.net/Call_Me_JHZ/article/details/105465768</a><br>
-Mininet+Ryu安装教程_ubuntu安装mininet和ryu最新csdn<br>
+<strong>Mininet+Ryu安装教程_ubuntu安装mininet和ryu最新csdn</strong><br>
 <a href="https://blog.csdn.net/2401_84010784/article/details/137664161" rel="nofollow">https://blog.csdn.net/2401_84010784/article/details/137664161</a></p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
