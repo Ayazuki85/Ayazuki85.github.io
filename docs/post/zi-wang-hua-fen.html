@@ -15,14 +15,14 @@
 **C类IP地址：** 网络号 24位，主机号8位     **范围**：192.0.0.0 到 223.255.255.255
 **IP地址的位数 = 网络号的位数 + 主机号的位数**
 ### 注意：
-IP 地址块 `142.12.23.64/26` 表示前 26 位是网络号，剩下的部分是主机号。">
+IP 地址块 $142.12.23.64/26$ 表示前 26 位是网络号，剩下的部分是主机号。">
 <meta property="og:title" content="子网划分">
 <meta property="og:description" content="**A类IP地址：** 网络号 8位，主机号 24位    **范围**：1.0.0.0 到 126.255.255.255
 **B类IP地址：** 网络号 16位，主机号16位   **范围**：128.0.0.0 到 191.255.255.255
 **C类IP地址：** 网络号 24位，主机号8位     **范围**：192.0.0.0 到 223.255.255.255
 **IP地址的位数 = 网络号的位数 + 主机号的位数**
 ### 注意：
-IP 地址块 `142.12.23.64/26` 表示前 26 位是网络号，剩下的部分是主机号。">
+IP 地址块 $142.12.23.64/26$ 表示前 26 位是网络号，剩下的部分是主机号。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://Ayazuki85.github.io/post/zi-wang-hua-fen.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&v=4">
@@ -67,7 +67,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/Ayazuki85/Ayazuki85.github.io/issues/6" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/Ayazuki85/Ayazuki85.github.io/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -88,7 +88,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <strong>C类IP地址：</strong> 网络号 24位，主机号8位     <strong>范围</strong>：192.0.0.0 到 223.255.255.255<br>
 <strong>IP地址的位数 = 网络号的位数 + 主机号的位数</strong></p>
 <h3>注意：</h3>
-<p>IP 地址块 <code class="notranslate">142.12.23.64/26</code> 表示前 26 位是网络号，剩下的部分是主机号。一个 IPv4 地址共有 32 位，因此主机号的位数是 <code class="notranslate">32 - 26 = 6</code> 位。虽然 IP 地址最初是按 A 类、B 类和 C 类来分类的，但现在普遍使用的是无类别域间路由（CIDR），也就是使用斜杠表示法（如 /26），来灵活地划分网络号和主机号。/26 表示的就是 26 位的网络号，主机号是 6 位，与 B 类默认的 16 位无关。</p>
+<p>IP 地址块 $142.12.23.64/26$ 表示前 26 位是网络号，剩下的部分是主机号。一个 IPv4 地址共有 32 位，因此主机号的位数是 6位。虽然 IP 地址最初是按 A 类、B 类和 C 类来分类的，但现在普遍使用的是<strong>无类别域间路由（CIDR）</strong>，也就是使用斜杠表示法（如 /26），来灵活地划分网络号和主机号。/26 表示的就是 26 位的网络号，主机号是 6 位，与 B 类默认的 16 位无关。</p>
 <p><strong>子网掩码的作用就是定义网络号和主机号的边界。</strong><br>
 一个网络，主机号有$x$位，则这个网络共包含$2^x$个地址，可分配给主机的IP地址是$2^x-2$个，因为网络地址和广播地址不可分配。网络中的第一个IP地址（全0的主机号部分）。这个地址用来标识整个网络，而不能分配给任何主机。比如在IPv4中，如果网络号是192.168.1.0/24，那么192.168.1.0就是网络地址。网络中的最后一个IP地址（全1的主机号部分）。这个地址用于向网络中的所有主机发送广播消息。比如192.168.1.0/24网络中的广播地址是192.168.1.255。<br>
 例如一个C类网络，可分配给主机的IP地址为$2^8-2=254$个(C类IP地址的主机号为8 )<br>
