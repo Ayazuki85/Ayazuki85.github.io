@@ -104,21 +104,21 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 <span class="pl-k">class</span> <span class="pl-v">MyTopo</span>(<span class="pl-v">Topo</span>):
     <span class="pl-k">def</span> <span class="pl-en">build</span>(<span class="pl-s1">self</span>):
-        <span class="pl-s1">s1</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-en">addSwitch</span>(<span class="pl-s">'s1'</span>)
-        <span class="pl-s1">h1</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-en">addHost</span>(<span class="pl-s">'h1'</span>, <span class="pl-s1">ip</span><span class="pl-c1">=</span><span class="pl-s">'10.0.0.1/24'</span>)
-        <span class="pl-s1">h2</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-en">addHost</span>(<span class="pl-s">'h2'</span>, <span class="pl-s1">ip</span><span class="pl-c1">=</span><span class="pl-s">'10.0.0.2/24'</span>)
-        <span class="pl-s1">h3</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-en">addHost</span>(<span class="pl-s">'h3'</span>, <span class="pl-s1">ip</span><span class="pl-c1">=</span><span class="pl-s">'10.0.0.3/24'</span>)
-        <span class="pl-s1">self</span>.<span class="pl-en">addLink</span>(<span class="pl-s1">h1</span>, <span class="pl-s1">s1</span>)
-        <span class="pl-s1">self</span>.<span class="pl-en">addLink</span>(<span class="pl-s1">h2</span>, <span class="pl-s1">s1</span>)
-        <span class="pl-s1">self</span>.<span class="pl-en">addLink</span>(<span class="pl-s1">h3</span>, <span class="pl-s1">s1</span>)
+        <span class="pl-s1">s1</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">addSwitch</span>(<span class="pl-s">'s1'</span>)
+        <span class="pl-s1">h1</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">addHost</span>(<span class="pl-s">'h1'</span>, <span class="pl-s1">ip</span><span class="pl-c1">=</span><span class="pl-s">'10.0.0.1/24'</span>)
+        <span class="pl-s1">h2</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">addHost</span>(<span class="pl-s">'h2'</span>, <span class="pl-s1">ip</span><span class="pl-c1">=</span><span class="pl-s">'10.0.0.2/24'</span>)
+        <span class="pl-s1">h3</span> <span class="pl-c1">=</span> <span class="pl-s1">self</span>.<span class="pl-c1">addHost</span>(<span class="pl-s">'h3'</span>, <span class="pl-s1">ip</span><span class="pl-c1">=</span><span class="pl-s">'10.0.0.3/24'</span>)
+        <span class="pl-s1">self</span>.<span class="pl-c1">addLink</span>(<span class="pl-s1">h1</span>, <span class="pl-s1">s1</span>)
+        <span class="pl-s1">self</span>.<span class="pl-c1">addLink</span>(<span class="pl-s1">h2</span>, <span class="pl-s1">s1</span>)
+        <span class="pl-s1">self</span>.<span class="pl-c1">addLink</span>(<span class="pl-s1">h3</span>, <span class="pl-s1">s1</span>)
 
 <span class="pl-k">if</span> <span class="pl-s1">__name__</span> <span class="pl-c1">==</span> <span class="pl-s">'__main__'</span>:
-    <span class="pl-s1">topo</span> <span class="pl-c1">=</span> <span class="pl-v">MyTopo</span>()
-    <span class="pl-s1">net</span> <span class="pl-c1">=</span> <span class="pl-v">Mininet</span>(<span class="pl-s1">topo</span><span class="pl-c1">=</span><span class="pl-s1">topo</span>, <span class="pl-s1">controller</span><span class="pl-c1">=</span><span class="pl-v">RemoteController</span>)
-    <span class="pl-s1">net</span>.<span class="pl-en">start</span>()
-    <span class="pl-s1">net</span>.<span class="pl-en">pingAll</span>()
-    <span class="pl-s1">net</span>.<span class="pl-en">interact</span>()
-    <span class="pl-s1">net</span>.<span class="pl-en">stop</span>()</pre></div>
+    <span class="pl-s1">topo</span> <span class="pl-c1">=</span> <span class="pl-en">MyTopo</span>()
+    <span class="pl-s1">net</span> <span class="pl-c1">=</span> <span class="pl-en">Mininet</span>(<span class="pl-s1">topo</span><span class="pl-c1">=</span><span class="pl-s1">topo</span>, <span class="pl-s1">controller</span><span class="pl-c1">=</span><span class="pl-v">RemoteController</span>)
+    <span class="pl-s1">net</span>.<span class="pl-c1">start</span>()
+    <span class="pl-s1">net</span>.<span class="pl-c1">pingAll</span>()
+    <span class="pl-s1">net</span>.<span class="pl-c1">interact</span>()
+    <span class="pl-s1">net</span>.<span class="pl-c1">stop</span>()</pre></div>
 <p>该代码构成的拓扑图如下<br>
 <a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/50d17abd-6873-49d3-b51f-1c511ee96f78"><img src="https://github.com/user-attachments/assets/50d17abd-6873-49d3-b51f-1c511ee96f78" alt="可视化拓扑图" style="max-width: 100%;"></a><br>
 2.以指定命令启动mininet并运行该拓扑</p>
