@@ -1,5 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Ayazuki的博客</title><link>https://Ayazuki85.github.io</link><description>正在建设中……</description><copyright>Ayazuki的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&amp;v=4</url><title>avatar</title><link>https://Ayazuki85.github.io</link></image><lastBuildDate>Fri, 18 Apr 2025 11:41:06 +0000</lastBuildDate><managingEditor>Ayazuki的博客</managingEditor><ttl>60</ttl><webMaster>Ayazuki的博客</webMaster><item><title>Kali Linux 暴力破解WiFi密码</title><link>https://Ayazuki85.github.io/post/Kali%20Linux%20-bao-li-po-jie-WiFi-mi-ma.html</link><description>1.实验前确保有能打开监听模式的网卡
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Ayazuki的博客</title><link>https://Ayazuki85.github.io</link><description>正在建设中……</description><copyright>Ayazuki的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&amp;v=4</url><title>avatar</title><link>https://Ayazuki85.github.io</link></image><lastBuildDate>Thu, 26 Jun 2025 12:31:41 +0000</lastBuildDate><managingEditor>Ayazuki的博客</managingEditor><ttl>60</ttl><webMaster>Ayazuki的博客</webMaster><item><title>我的VScode配置C语言之路</title><link>https://Ayazuki85.github.io/post/wo-de-VScode-pei-zhi-C-yu-yan-zhi-lu.html</link><description>写下本文的目的是为了记录重装系统后在配置VScode的过程中遇到的困难
+
+# 1.VScode与Clion抉择
+
+## 1.1 为什么不选用Clion？
+
+Windows的控制台默认编码为GBK，我想要UTF-8的编码，出现冲突，找了网络上的解决办法，第一种是将文件编码转为GBK即可解决，第二种是修改注册表取消勾选run.processes.with.pty，这种方法有个隐患，目前截止到2025年6月26日仍然存在该隐患。</description><guid isPermaLink="true">https://Ayazuki85.github.io/post/wo-de-VScode-pei-zhi-C-yu-yan-zhi-lu.html</guid><pubDate>Thu, 26 Jun 2025 12:30:35 +0000</pubDate></item><item><title>Kali Linux 暴力破解WiFi密码</title><link>https://Ayazuki85.github.io/post/Kali%20Linux%20-bao-li-po-jie-WiFi-mi-ma.html</link><description>1.实验前确保有能打开监听模式的网卡
 2.使用`sudo airmon-ng`显示无线接口信息
 
 ![Image](https://github.com/user-attachments/assets/c68e22e8-9029-4de8-85bf-8d3ec014d9f6)
