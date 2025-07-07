@@ -120,7 +120,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <span class="pl-s1">net</span>.<span class="pl-c1">interact</span>()
     <span class="pl-s1">net</span>.<span class="pl-c1">stop</span>()</pre></div>
 <p>该代码构成的拓扑图如下<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/50d17abd-6873-49d3-b51f-1c511ee96f78"><img src="https://github.com/user-attachments/assets/50d17abd-6873-49d3-b51f-1c511ee96f78" alt="可视化拓扑图" style="max-width: 100%; height: auto;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/50d17abd-6873-49d3-b51f-1c511ee96f78"><img src="https://github.com/user-attachments/assets/50d17abd-6873-49d3-b51f-1c511ee96f78" alt="可视化拓扑图" style="max-width: 100%;"></a><br>
 2.以指定命令启动mininet并运行该拓扑</p>
 <pre class="notranslate"><code class="notranslate"> sudo mn --controller=remote,ip=127.0.0.1,port=6653 --switch=ovsk --topo=single,3 --mac --custom my_topo.py
 </code></pre>
@@ -128,28 +128,28 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 3.启动Ryu控制器接管该拓扑中的控制器</p>
 <pre class="notranslate"><code class="notranslate">ryu-manager --observe-links ryu/ryu/app/gui_topology/gui_topology.py ryu/ryu/app/simple_switch_13.py
 </code></pre>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/0a0d828c-50fa-4d66-89e3-7186701c9f4f"><img src="https://github.com/user-attachments/assets/0a0d828c-50fa-4d66-89e3-7186701c9f4f" alt="RYU启动" style="max-width: 100%; height: auto;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/0a0d828c-50fa-4d66-89e3-7186701c9f4f"><img src="https://github.com/user-attachments/assets/0a0d828c-50fa-4d66-89e3-7186701c9f4f" alt="RYU启动" style="max-width: 100%;"></a><br>
 4.配置sFlow Agent<br>
 我们需要在虚拟交换机配置sFlow Agent，这样sFlow Collector 才能收集到流量信息进行分析和呈现。键入以下指令部署sFlow Agent。配置命令如下：</p>
 <pre class="notranslate"><code class="notranslate">sudo ovs-vsctl -- --id=@sflow create sflow agent=s1-eth0 target=\"127.0.0.1:6343\" sampling=10 polling=20 -- -- set bridge s1 sflow=@sflow
 
 ./start.sh
 </code></pre>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1e696b75-b82c-4723-8a3d-12b625de2a83"><img src="https://github.com/user-attachments/assets/1e696b75-b82c-4723-8a3d-12b625de2a83" alt="配置Agent" style="max-width: 100%; height: auto;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1e696b75-b82c-4723-8a3d-12b625de2a83"><img src="https://github.com/user-attachments/assets/1e696b75-b82c-4723-8a3d-12b625de2a83" alt="配置Agent" style="max-width: 100%;"></a><br>
 5.在浏览器中输入网址localhost:8008/html/index.html，我们可以通过其WebUI进行查看Agent 是否配置成功，配置成功的话可以看见各项监控状态。<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6989147c-3404-4288-b1e4-a962eade870a"><img src="https://github.com/user-attachments/assets/6989147c-3404-4288-b1e4-a962eade870a" alt="是否配置成功" style="max-width: 100%; height: auto;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6989147c-3404-4288-b1e4-a962eade870a"><img src="https://github.com/user-attachments/assets/6989147c-3404-4288-b1e4-a962eade870a" alt="是否配置成功" style="max-width: 100%;"></a><br>
 6.我们现在切换到mininet终端<br>
 使用如下指令：<code class="notranslate">xterm h1 h2 </code>，打开 Host1，和Host2的终端；<br>
 然后在 Host1 上启动一个 http 服务：<code class="notranslate">python3 -m http.server 80&amp;</code><br>
 此时让h2正常的 ping h1，观察此时的情况，未发现异常。<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/978e76d2-a2c2-4c16-92d7-f38786719fde"><img src="https://github.com/user-attachments/assets/978e76d2-a2c2-4c16-92d7-f38786719fde" alt="正常Ping" style="max-width: 100%; height: auto;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/978e76d2-a2c2-4c16-92d7-f38786719fde"><img src="https://github.com/user-attachments/assets/978e76d2-a2c2-4c16-92d7-f38786719fde" alt="正常Ping" style="max-width: 100%;"></a><br>
 7.现在开始模拟DDoS攻击<br>
 在h2终端上使用命令<code class="notranslate"> h2 ping -f 10.0.0.1</code><br>
 再观察此时的情况<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5ffbf5de-4fe4-4da6-b17a-42e0f2120de7"><img src="https://github.com/user-attachments/assets/5ffbf5de-4fe4-4da6-b17a-42e0f2120de7" alt="被DDOS" style="max-width: 100%; height: auto;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5ffbf5de-4fe4-4da6-b17a-42e0f2120de7"><img src="https://github.com/user-attachments/assets/5ffbf5de-4fe4-4da6-b17a-42e0f2120de7" alt="被DDOS" style="max-width: 100%;"></a><br>
 8.现在进行DDOS防御<br>
 我们在监测到流量异常之后，需要利用RYU控制器向OpenFlow交换机下发流表，抑制攻击流量。由于前面的DDoS采用的ping洪范攻击，因此我们需要下发流表，将攻击流down掉，因此利用Apifox添加流表。具体操作：首先进入Apifox，利用get操作可以获得已有的流表，所以url填<a href="http://localhost:8080/stats/flow/1" rel="nofollow">http://localhost:8080/stats/flow/1</a><br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398"><img src="https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398" alt="防御1" style="max-width: 100%; height: auto;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398"><img src="https://github.com/user-attachments/assets/9ee7d51c-961b-495b-9632-5828ca9f2398" alt="防御1" style="max-width: 100%;"></a><br>
 为了抑制攻击流，我们需要添加流表。<br>
 我们下发流表控制从交换机的端口1经过的流量，url填写为 <a href="http://localhost:8080/stats/flowentry/add" rel="nofollow">http://localhost:8080/stats/flowentry/add</a><br>
 <strong>功能选择post方式</strong><br>
@@ -175,9 +175,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     },
     <span class="pl-ent">"actions"</span>: []
 }</pre></div>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9"><img src="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9" alt="防御2" style="max-width: 100%; height: auto;"></a><br>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9"><img src="https://github.com/user-attachments/assets/ae6cf747-738b-4bb9-9cd9-416b118ae1f9" alt="防御2" style="max-width: 100%;"></a><br>
 此时我们再观察一下情况，发现情况已经趋向于正常<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd"><img src="https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd" alt="正常" style="max-width: 100%; height: auto;"></a></p>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd"><img src="https://github.com/user-attachments/assets/29c54bec-49a3-4406-81e8-aa194d42f0bd" alt="正常" style="max-width: 100%;"></a></p>
 <h1>参考文献:</h1>
 <p><strong>Ubuntu22.04安装mininet和ryu：</strong><br>
 <a href="https://blog.csdn.net/2301_76203161/article/details/135979942" rel="nofollow">https://blog.csdn.net/2301_76203161/article/details/135979942</a><br>
