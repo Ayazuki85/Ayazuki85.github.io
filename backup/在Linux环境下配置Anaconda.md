@@ -1,6 +1,6 @@
 # 1.软件下载
 
-[[Anaconda下载地址](https://repo.anaconda.com/archive/index.html)](https://repo.anaconda.com/archive/index.html "https://repo.anaconda.com/archive/index.html")
+[[Anaconda下载地址](https://repo.anaconda.com/archive/index.html)]
 
 <img width="1466" height="1239" alt="Image" src="https://github.com/user-attachments/assets/2df07d75-8c21-4a73-9016-bb83f97961bf" />
 
@@ -10,7 +10,7 @@
 
 我这里下载`Anaconda3-2025.06-1-Linux-x86_64.sh`
 
-将下载后的文件放置在Linux里，我这里使用的是WSL。如何使用WSL可以参考[[超详细的WSL教程：Windows上的Linux子系统](https://www.bilibili.com/video/BV1tW42197za/?vd_source=40bb5e54b66eaedaf85bb6bb9ba32dad)](https://www.bilibili.com/video/BV1tW42197za/?vd_source=40bb5e54b66eaedaf85bb6bb9ba32dad)
+将下载后的文件放置在Linux里，我这里使用的是WSL。如何使用WSL可以参考[[超详细的WSL教程：Windows上的Linux子系统](https://www.bilibili.com/video/BV1tW42197za/?vd_source=40bb5e54b66eaedaf85bb6bb9ba32dad)]
 
 文件下载好后我选择将文件放置在/home/下
 
@@ -132,8 +132,8 @@
 
 # 参考资料
 
-[[超详细的linux-conda环境安装教程CSDN博客](https://blog.csdn.net/Alex_81D/article/details/135692506)](https://blog.csdn.net/Alex_81D/article/details/135692506)
+[[超详细的linux-conda环境安装教程CSDN博客](https://blog.csdn.net/Alex_81D/article/details/135692506)]
 
-[[Linux安装Conda教程](https://0xdadream.github.io/2025/04/10/linux-an-zhuang-conda-jiao-cheng/)](https://0xdadream.github.io/2025/04/10/linux-an-zhuang-conda-jiao-cheng/)
+[[Linux安装Conda教程](https://0xdadream.github.io/2025/04/10/linux-an-zhuang-conda-jiao-cheng/)]
 
-[[Anaconda教程](https://www.runoob.com/python-qt/anaconda-tutorial.html)](https://www.runoob.com/python-qt/anaconda-tutorial.html)
+[[Anaconda教程](https://www.runoob.com/python-qt/anaconda-tutorial.html)]
