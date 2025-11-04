@@ -24,19 +24,11 @@
 
 <img width="891" height="762" alt="Image" src="https://github.com/user-attachments/assets/b215735f-7796-461d-af76-be2b21c2df12" />
 
-解压后会问一个问题，说人话就是你如果希望在启动Linux终端时自动激活conda的base环境就输入yes，不想这么做就输入no，这里我选择输入no。
-
-<img width="1200" height="540" alt="Image" src="https://github.com/user-attachments/assets/9971398e-1a2b-45e7-9920-1832b0ddaa0b" />
+解压后会问一个问题，说人话就是你如果希望在启动Linux终端时自动激活conda的base环境就输入yes，不想这么做就输入no，这里我选择输入yes,选择输入yes后就不需要手动配环境变量，重启终端后，输入`conda --version`,终端会返回conda的版本号
 
 至此，Anaconda安装完成。
 
-# 3.配置环境变量
-
-此时在终端输入`conda`会提示`conda: command not found`，这是因为conda还没有被配置到环境变量中。如果出现`Could not find command-not-found database. Run 'sudo apt update' to populate it.`说明你安装Linux后还没有进行过包索引更新。依次输入`sudo apt update` `sudo apt upgrade` 同步本地软件包索引与远程仓库的最新信息，升级系统中所有已安装的软件包到新版本。
-
-接下来进行配置环境变量，输入`source ~/anaconda3/etc/profile.d/conda.sh`，再输入`conda --version`,如果终端返回conda的版本号，说明成功将 conda 的路径添加到环境变量中。
-
-# 4.基本命令示例
+# 3.基本命令示例
 
 **创建一个名为 "myenv" 的新环境:**
 
