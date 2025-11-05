@@ -95,17 +95,11 @@ Build cuda_12.8.r12.8/compiler.35404655_0
 # cuDNN安装
 [cuDNN下载地址](https://developer.nvidia.com/rdp/cudnn-archive)
 <img width="1628" height="878" alt="Image" src="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f" />
-
 将文件放置在Ubuntu中，输入`tar -xvf cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz`执行解压.
-
 解压完成后输入`cd cudnn-linux-x86_64-8.9.7.29_cuda12-archive`进入该目录下，执行
-
 `sudo cp -r ./lib/* /usr/local/cuda-12.8/lib64/`
-
 `sudo cp -r ./include/* /usr/local/cuda-12.8/include/`
-
 接下来修改权限
-
 `sudo chmod a+r /usr/local/cuda-12.8/include/cudnn*`
 `sudo chmod a+r /usr/local/cuda-12.8/lib64/libcudnn*`
 

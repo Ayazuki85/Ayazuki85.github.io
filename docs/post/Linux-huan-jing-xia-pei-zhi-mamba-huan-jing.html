@@ -247,13 +247,13 @@ Build cuda_12.8.r12.8/compiler.35404655_0
 <p>至此，说明CUDA的环境变量已经配置完成。</p>
 <h1>cuDNN安装</h1>
 <p><a href="https://developer.nvidia.com/rdp/cudnn-archive" rel="nofollow">cuDNN下载地址</a><br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f"><img width="1628" height="878" alt="Image" src="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f" style="max-width: 100%; height: auto; max-height: 878px;"></a></p>
-<p>将文件放置在Ubuntu中，输入<code class="notranslate">tar -xvf cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz</code>执行解压.</p>
-<p>解压完成后输入<code class="notranslate">cd cudnn-linux-x86_64-8.9.7.29_cuda12-archive</code>进入该目录下，执行</p>
-<p><code class="notranslate">sudo cp -r ./lib/* /usr/local/cuda-12.8/lib64/</code></p>
-<p><code class="notranslate">sudo cp -r ./include/* /usr/local/cuda-12.8/include/</code></p>
-<p>接下来修改权限</p>
-<p><code class="notranslate">sudo chmod a+r /usr/local/cuda-12.8/include/cudnn*</code><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f"><img width="1628" height="878" alt="Image" src="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f" style="max-width: 100%; height: auto; max-height: 878px;"></a><br>
+将文件放置在Ubuntu中，输入<code class="notranslate">tar -xvf cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz</code>执行解压.<br>
+解压完成后输入<code class="notranslate">cd cudnn-linux-x86_64-8.9.7.29_cuda12-archive</code>进入该目录下，执行<br>
+<code class="notranslate">sudo cp -r ./lib/* /usr/local/cuda-12.8/lib64/</code><br>
+<code class="notranslate">sudo cp -r ./include/* /usr/local/cuda-12.8/include/</code><br>
+接下来修改权限<br>
+<code class="notranslate">sudo chmod a+r /usr/local/cuda-12.8/include/cudnn*</code><br>
 <code class="notranslate">sudo chmod a+r /usr/local/cuda-12.8/lib64/libcudnn*</code></p>
 <h1>配置mamba环境</h1>
 <p>在终端输入<code class="notranslate">conda create --name mamba python=3.10</code>创建一个mamba专属的虚拟环境。</p>
