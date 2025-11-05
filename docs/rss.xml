@@ -1,5 +1,50 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Ayazuki的博客</title><link>https://Ayazuki85.github.io</link><description>正在建设中……</description><copyright>Ayazuki的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&amp;v=4</url><title>avatar</title><link>https://Ayazuki85.github.io</link></image><lastBuildDate>Sun, 02 Nov 2025 10:12:51 +0000</lastBuildDate><managingEditor>Ayazuki的博客</managingEditor><ttl>60</ttl><webMaster>Ayazuki的博客</webMaster><item><title>在Linux环境下配置Anaconda</title><link>https://Ayazuki85.github.io/post/zai-Linux-huan-jing-xia-pei-zhi-Anaconda.html</link><description># 1.软件下载
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Ayazuki的博客</title><link>https://Ayazuki85.github.io</link><description>正在建设中……</description><copyright>Ayazuki的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&amp;v=4</url><title>avatar</title><link>https://Ayazuki85.github.io</link></image><lastBuildDate>Wed, 05 Nov 2025 05:59:45 +0000</lastBuildDate><managingEditor>Ayazuki的博客</managingEditor><ttl>60</ttl><webMaster>Ayazuki的博客</webMaster><item><title>Linux环境下配置mamba环境</title><link>https://Ayazuki85.github.io/post/Linux-huan-jing-xia-pei-zhi-mamba-huan-jing.html</link><description># 环境要求：
+
+- Python = 3.10
+  
+- CUDA = 12.8
+  
+- CUDNN = 8.9.7
+  
+- PyTorch = 2.7
+  
+- Linux (本文采用的是基于Windows10系统的WSL安装的Ubuntu-24.04)
+  
+
+# Anaconda的安装
+
+参考[在Linux环境下配置Anaconda](https://20040506.xyz/post/zai-Linux-huan-jing-xia-pei-zhi-Anaconda.html)
+
+# CUDA ToolKit下载
+
+首先在自己Windows终端输入`nvidia-smi`确认CUDA的最大支持版本号
+
+&lt;img width='923' height='654' alt='Image' src='https://github.com/user-attachments/assets/7f26fb63-f4fe-47a4-9fde-9d7be63030b6' /&gt;
+
+我这里是最大支持CUDA 13.0，所以后面我选择安装CUDA ToolKit 12.8版本
+
+[CUDA ToolKit官网](https://developer.nvidia.com/cuda-toolkit-archive)
+
+&lt;img width='1611' height='777' alt='Image' src='https://github.com/user-attachments/assets/3749c05d-8d06-403f-8246-87303f70d187' /&gt;
+
+选择适合的型号
+
+&lt;img width='1666' height='826' alt='Image' src='https://github.com/user-attachments/assets/80b51011-b537-4c86-ac55-db0c93ff6b1a' /&gt;
+
+最后官方给出了安装方式
+
+```Linux
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
+sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda-repo-ubuntu2404-12-8-local_12.8.0-570.86.10-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2404-12-8-local_12.8.0-570.86.10-1_amd64.deb
+sudo cp /var/cuda-repo-ubuntu2404-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-8
+```
+
+接下来进入到Ubuntu终端执行命令安装CUDA ToolKit 12.8.这里需要注意的是第三行命令，文件会有点大(3.8G)，因为国内的网络环境问题，推荐复制链接`https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda-repo-ubuntu2404-12-8-local_12.8.0-570.86.10-1_amd64.d` 跳转到Windows浏览器内下载好，然后移动到Ubuntu系统里进行安装。</description><guid isPermaLink="true">https://Ayazuki85.github.io/post/Linux-huan-jing-xia-pei-zhi-mamba-huan-jing.html</guid><pubDate>Wed, 05 Nov 2025 05:59:11 +0000</pubDate></item><item><title>在Linux环境下配置Anaconda</title><link>https://Ayazuki85.github.io/post/zai-Linux-huan-jing-xia-pei-zhi-Anaconda.html</link><description># 1.软件下载
 
 [[Anaconda下载地址](https://repo.anaconda.com/archive/index.html)]
 
