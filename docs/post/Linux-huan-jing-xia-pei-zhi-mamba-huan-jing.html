@@ -107,7 +107,7 @@ sudo apt-get -y install cuda-toolkit-12-8
 <meta property="og:url" content="https://Ayazuki85.github.io/post/Linux-huan-jing-xia-pei-zhi-mamba-huan-jing.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/126930853?u=9ac80a8778a25a9035582eca57b76d3e13957099&v=4">
 <title>Linux环境下配置mamba环境</title>
-<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
+
 
 
 </head>
@@ -261,17 +261,18 @@ Build cuda_12.8.r12.8/compiler.35404655_0
 <p><a href="https://pytorch.ac.cn/get-started/previous-versions/" rel="nofollow">安装以往的 PyTorch 版本 </a></p>
 <p>输入<code class="notranslate">pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cu128</code>安装pytorch，需要注意的是：使用conda命令下载最后得到的包文件名为pytorch，使用pip得到的包名是torch。</p>
 <p>安装pytorch后，现在可以测试一下之前cuDNN的配置是否有效，在终端输入<code class="notranslate">python check_cuda.py</code>执行check_cuda.py</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># check_cuda.py</span>
-<span class="pl-k">import</span> <span class="pl-s1">torch</span>
-<span class="pl-c"># 1. 检查 CUDA 是否可用</span>
-<span class="pl-en">print</span>(<span class="pl-s">"CUDA available:"</span>, <span class="pl-s1">torch</span>.<span class="pl-c1">cuda</span>.<span class="pl-c1">is_available</span>())
-<span class="pl-c"># 2. 检查 cuDNN 是否启用</span>
-<span class="pl-en">print</span>(<span class="pl-s">"cuDNN enabled:"</span>, <span class="pl-s1">torch</span>.<span class="pl-c1">backends</span>.<span class="pl-c1">cudnn</span>.<span class="pl-c1">enabled</span>)
-<span class="pl-c"># 3. 查看 cuDNN 版本</span>
-<span class="pl-en">print</span>(<span class="pl-s">"cuDNN version:"</span>, <span class="pl-s1">torch</span>.<span class="pl-c1">backends</span>.<span class="pl-c1">cudnn</span>.<span class="pl-c1">version</span>())
-<span class="pl-c"># 4. 查看当前使用的 GPU</span>
-<span class="pl-k">if</span> <span class="pl-s1">torch</span>.<span class="pl-c1">cuda</span>.<span class="pl-c1">is_available</span>():
-    <span class="pl-en">print</span>(<span class="pl-s">"GPU:"</span>, <span class="pl-s1">torch</span>.<span class="pl-c1">cuda</span>.<span class="pl-c1">get_device_name</span>(<span class="pl-c1">0</span>))</pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate"># check_cuda.py
+import torch
+# 1. 检查 CUDA 是否可用
+print("CUDA available:", torch.cuda.is_available())
+# 2. 检查 cuDNN 是否启用
+print("cuDNN enabled:", torch.backends.cudnn.enabled)
+# 3. 查看 cuDNN 版本
+print("cuDNN version:", torch.backends.cudnn.version())
+# 4. 查看当前使用的 GPU
+if torch.cuda.is_available():
+    print("GPU:", torch.cuda.get_device_name(0))
+</code></pre>
 <p>输出</p>
 <pre class="notranslate"><code class="notranslate">CUDA available: True
 cuDNN enabled: True
@@ -283,23 +284,25 @@ GPU: NVIDIA GeForce RTX 3050 Laptop GPU
 <p>前期工作准备完成，现在开始编译安装causal-conv1d，进入<a href="https://github.com/Dao-AILab/causal-conv1d">causal-conv1d项目</a>的发行页，下载与版本号匹配的whl文件，将文件放到Ubuntu里进行编译安装。</p>
 <p>causal_conv1d-1.5.4是causal_conv1d的版本号，本文采用的cuda是12.8，torch是2.7，python是3.10，经过筛选后发现只有两个文件匹配，一个是causal_conv1d-1.5.4+cu12torch2.7cxx11abiFALSE-cp310-cp310-linux_x86_64.whl，另一个是causal_conv1d-1.5.4+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl，<strong>这两者最大的不同是cxx11abi是TRUE还是FALSE</strong>。cxx11abi更准确地说是 GLIBCXX_USE_CXX11_ABI，它是 GCC在 C++11 标准库 ABI变更中引入的一个编译宏控制开关，直接影响 C++ 程序的二进制兼容性。<strong>因为 PyTorch框架的预编译 wheel 包是在特定 ABI 下编译的。如果你本地环境 ABI 不匹配，就会出错！</strong></p>
 <p>我们可以运行check_cxx11abi.py来查看我们的cxx11abi情况来选择适合的whl文件。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># check_cxx11abi.py</span>
-<span class="pl-k">import</span> <span class="pl-s1">torch</span>
-<span class="pl-en">print</span>(<span class="pl-s">"PyTorch compiled with _GLIBCXX_USE_CXX11_ABI ="</span>, <span class="pl-s1">torch</span>.<span class="pl-c1">_C</span>.<span class="pl-c1">_GLIBCXX_USE_CXX11_ABI</span>)</pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate"># check_cxx11abi.py
+import torch
+print("PyTorch compiled with _GLIBCXX_USE_CXX11_ABI =", torch._C._GLIBCXX_USE_CXX11_ABI)
+</code></pre>
 <p>输出</p>
 <pre class="notranslate"><code class="notranslate">PyTorch compiled with _GLIBCXX_USE_CXX11_ABI = True
 </code></pre>
 <p>所以本文选取<strong>causal_conv1d-1.5.4+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl</strong>进行编译安装causal_conv1d。将下载好的whl文件移动到Ubuntu中，执行<code class="notranslate">pip install causal_conv1d-1.5.4+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl</code>编译安装causal_conv1d。</p>
 <p>接下来执行check_conv1d.py验证causal_conv1d包安装情况。</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># check_conv1d.py</span>
-<span class="pl-k">import</span> <span class="pl-s1">torch</span>
-<span class="pl-k">from</span> <span class="pl-s1">causal_conv1d</span> <span class="pl-k">import</span> <span class="pl-s1">causal_conv1d_fn</span>
-<span class="pl-c"># 假设 batch=2, dim=64, seqlen=128, kernel_width=4</span>
-<span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">torch</span>.<span class="pl-c1">randn</span>(<span class="pl-c1">2</span>, <span class="pl-c1">64</span>, <span class="pl-c1">128</span>, <span class="pl-s1">device</span><span class="pl-c1">=</span><span class="pl-s">'cuda'</span>, <span class="pl-s1">dtype</span><span class="pl-c1">=</span><span class="pl-s1">torch</span>.<span class="pl-c1">float16</span>)
-<span class="pl-s1">weight</span> <span class="pl-c1">=</span> <span class="pl-s1">torch</span>.<span class="pl-c1">randn</span>(<span class="pl-c1">64</span>, <span class="pl-c1">4</span>, <span class="pl-s1">device</span><span class="pl-c1">=</span><span class="pl-s">'cuda'</span>, <span class="pl-s1">dtype</span><span class="pl-c1">=</span><span class="pl-s1">torch</span>.<span class="pl-c1">float16</span>)
-<span class="pl-s1">bias</span> <span class="pl-c1">=</span> <span class="pl-s1">torch</span>.<span class="pl-c1">randn</span>(<span class="pl-c1">64</span>, <span class="pl-s1">device</span><span class="pl-c1">=</span><span class="pl-s">'cuda'</span>, <span class="pl-s1">dtype</span><span class="pl-c1">=</span><span class="pl-s1">torch</span>.<span class="pl-c1">float16</span>)
-<span class="pl-s1">out</span> <span class="pl-c1">=</span> <span class="pl-en">causal_conv1d_fn</span>(<span class="pl-s1">x</span>, <span class="pl-s1">weight</span>, <span class="pl-s1">bias</span><span class="pl-c1">=</span><span class="pl-s1">bias</span>, <span class="pl-s1">activation</span><span class="pl-c1">=</span><span class="pl-s">"silu"</span>)
-<span class="pl-en">print</span>(<span class="pl-s1">out</span>.<span class="pl-c1">shape</span>)</pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate"># check_conv1d.py
+import torch
+from causal_conv1d import causal_conv1d_fn
+# 假设 batch=2, dim=64, seqlen=128, kernel_width=4
+x = torch.randn(2, 64, 128, device='cuda', dtype=torch.float16)
+weight = torch.randn(64, 4, device='cuda', dtype=torch.float16)
+bias = torch.randn(64, device='cuda', dtype=torch.float16)
+out = causal_conv1d_fn(x, weight, bias=bias, activation="silu")
+print(out.shape)
+</code></pre>
 <p>输出结果</p>
 <pre class="notranslate"><code class="notranslate">torch.Size([2, 64, 128])
 #输出形状与输入形状相同，说明causal_conv1d正常工作
@@ -308,36 +311,38 @@ GPU: NVIDIA GeForce RTX 3050 Laptop GPU
 <p><code class="notranslate">pip install mamba_ssm-2.2.6.post3+cu12torch2.7cxx11abiTRUE-cp310-cp310-linux_x86_64.whl --no-build-isolation</code></p>
 <p>在官方文档中的 Installation环节，给出了pip编译安装报错的解决方法：尝试向 pip 传递 --no-build-isolation 参数。可解决编译过程中与 PyTorch 版本不匹配的相关报错</p>
 <p>执行check_mamba.py验证mamba安装是否正常</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># check_mamba.py</span>
-<span class="pl-k">import</span> <span class="pl-s1">torch</span>
-<span class="pl-k">from</span> <span class="pl-s1">mamba_ssm</span> <span class="pl-k">import</span> <span class="pl-v">Mamba</span>
-<span class="pl-s1">batch</span>, <span class="pl-s1">length</span>, <span class="pl-s1">dim</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span>, <span class="pl-c1">64</span>, <span class="pl-c1">16</span>
-<span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">torch</span>.<span class="pl-c1">randn</span>(<span class="pl-s1">batch</span>, <span class="pl-s1">length</span>, <span class="pl-s1">dim</span>).<span class="pl-c1">to</span>(<span class="pl-s">"cuda"</span>)
-<span class="pl-s1">model</span> <span class="pl-c1">=</span> <span class="pl-en">Mamba</span>(
-    <span class="pl-c"># This module uses roughly 3 * expand * d_model^2 parameters</span>
-    <span class="pl-s1">d_model</span><span class="pl-c1">=</span><span class="pl-s1">dim</span>, <span class="pl-c"># Model dimension d_model</span>
-    <span class="pl-s1">d_state</span><span class="pl-c1">=</span><span class="pl-c1">16</span>,  <span class="pl-c"># SSM state expansion factor</span>
-    <span class="pl-s1">d_conv</span><span class="pl-c1">=</span><span class="pl-c1">4</span>,    <span class="pl-c"># Local convolution width</span>
-    <span class="pl-s1">expand</span><span class="pl-c1">=</span><span class="pl-c1">2</span>,    <span class="pl-c"># Block expansion factor</span>
-).<span class="pl-c1">to</span>(<span class="pl-s">"cuda"</span>)
-<span class="pl-s1">y</span> <span class="pl-c1">=</span> <span class="pl-en">model</span>(<span class="pl-s1">x</span>)
-<span class="pl-k">assert</span> <span class="pl-s1">y</span>.<span class="pl-c1">shape</span> <span class="pl-c1">==</span> <span class="pl-s1">x</span>.<span class="pl-c1">shape</span></pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate"># check_mamba.py
+import torch
+from mamba_ssm import Mamba
+batch, length, dim = 2, 64, 16
+x = torch.randn(batch, length, dim).to("cuda")
+model = Mamba(
+    # This module uses roughly 3 * expand * d_model^2 parameters
+    d_model=dim, # Model dimension d_model
+    d_state=16,  # SSM state expansion factor
+    d_conv=4,    # Local convolution width
+    expand=2,    # Block expansion factor
+).to("cuda")
+y = model(x)
+assert y.shape == x.shape
+</code></pre>
 <p>该程序执行后正常结束无报错信息，说明mamba工作正常</p>
 <p>接下来执行check_mamba2.py</p>
-<div class="highlight highlight-source-python"><pre class="notranslate"><span class="pl-c"># 执行check_mamba2.py</span>
-<span class="pl-k">import</span> <span class="pl-s1">torch</span>
-<span class="pl-k">from</span> <span class="pl-s1">mamba_ssm</span> <span class="pl-k">import</span> <span class="pl-v">Mamba2</span>
-<span class="pl-s1">batch</span>, <span class="pl-s1">length</span>, <span class="pl-s1">dim</span> <span class="pl-c1">=</span> <span class="pl-c1">2</span>, <span class="pl-c1">64</span>, <span class="pl-c1">32</span>
-<span class="pl-s1">x</span> <span class="pl-c1">=</span> <span class="pl-s1">torch</span>.<span class="pl-c1">randn</span>(<span class="pl-s1">batch</span>, <span class="pl-s1">length</span>, <span class="pl-s1">dim</span>).<span class="pl-c1">to</span>(<span class="pl-s">"cuda"</span>)
-<span class="pl-s1">model</span> <span class="pl-c1">=</span> <span class="pl-en">Mamba2</span>(
-    <span class="pl-c"># This module uses roughly 3 * expand * d_model^2 parameters</span>
-    <span class="pl-s1">d_model</span><span class="pl-c1">=</span><span class="pl-s1">dim</span>, <span class="pl-c"># Model dimension d_model</span>
-    <span class="pl-s1">d_state</span><span class="pl-c1">=</span><span class="pl-c1">64</span>,  <span class="pl-c"># SSM state expansion factor, typically 64 or 128</span>
-    <span class="pl-s1">d_conv</span><span class="pl-c1">=</span><span class="pl-c1">4</span>,    <span class="pl-c"># Local convolution width</span>
-    <span class="pl-s1">expand</span><span class="pl-c1">=</span><span class="pl-c1">2</span>,    <span class="pl-c"># Block expansion factor</span>
-).<span class="pl-c1">to</span>(<span class="pl-s">"cuda"</span>)
-<span class="pl-s1">y</span> <span class="pl-c1">=</span> <span class="pl-en">model</span>(<span class="pl-s1">x</span>)
-<span class="pl-k">assert</span> <span class="pl-s1">y</span>.<span class="pl-c1">shape</span> <span class="pl-c1">==</span> <span class="pl-s1">x</span>.<span class="pl-c1">shape</span></pre></div>
+<pre lang="python" class="notranslate"><code class="notranslate"># 执行check_mamba2.py
+import torch
+from mamba_ssm import Mamba2
+batch, length, dim = 2, 64, 32
+x = torch.randn(batch, length, dim).to("cuda")
+model = Mamba2(
+    # This module uses roughly 3 * expand * d_model^2 parameters
+    d_model=dim, # Model dimension d_model
+    d_state=64,  # SSM state expansion factor, typically 64 or 128
+    d_conv=4,    # Local convolution width
+    expand=2,    # Block expansion factor
+).to("cuda")
+y = model(x)
+assert y.shape == x.shape
+</code></pre>
 <p>该程序执行后正常结束无报错信息，说明mamba2工作正常。mamba配置完成</p>
 <h1>参考资料</h1>
 <p><a href="https://github.com/AlwaysFHao/Mamba-Install">Mamba安装-基于mamba源码进行cuda编译</a><br>
