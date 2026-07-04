@@ -195,12 +195,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>参考<a href="https://20040506.xyz/post/zai-Linux-huan-jing-xia-pei-zhi-Anaconda.html" rel="nofollow">在Linux环境下配置Anaconda</a></p>
 <h1>CUDA ToolKit下载</h1>
 <p>首先在自己Windows终端输入<code class="notranslate">nvidia-smi</code>确认CUDA的最大支持版本号</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7f26fb63-f4fe-47a4-9fde-9d7be63030b6"><img width="923" height="654" alt="Image" src="https://github.com/user-attachments/assets/7f26fb63-f4fe-47a4-9fde-9d7be63030b6" style="max-width: 100%; height: auto; max-height: 654px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7f26fb63-f4fe-47a4-9fde-9d7be63030b6"><img width="923" height="654" alt="Image" src="https://github.com/user-attachments/assets/7f26fb63-f4fe-47a4-9fde-9d7be63030b6" style="max-width: 100%; height: auto; max-height: 654px;; aspect-ratio: 923 / 654; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
 <p>我这里是最大支持CUDA 13.0，所以后面我选择安装CUDA ToolKit 12.8版本</p>
 <p><a href="https://developer.nvidia.com/cuda-toolkit-archive" rel="nofollow">CUDA ToolKit官网</a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/3749c05d-8d06-403f-8246-87303f70d187"><img width="1611" height="777" alt="Image" src="https://github.com/user-attachments/assets/3749c05d-8d06-403f-8246-87303f70d187" style="max-width: 100%; height: auto; max-height: 777px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/3749c05d-8d06-403f-8246-87303f70d187"><img width="1611" height="777" alt="Image" src="https://github.com/user-attachments/assets/3749c05d-8d06-403f-8246-87303f70d187" style="max-width: 100%; height: auto; max-height: 777px;; aspect-ratio: 1611 / 777; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
 <p>选择适合的型号</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/80b51011-b537-4c86-ac55-db0c93ff6b1a"><img width="1666" height="826" alt="Image" src="https://github.com/user-attachments/assets/80b51011-b537-4c86-ac55-db0c93ff6b1a" style="max-width: 100%; height: auto; max-height: 826px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/80b51011-b537-4c86-ac55-db0c93ff6b1a"><img width="1666" height="826" alt="Image" src="https://github.com/user-attachments/assets/80b51011-b537-4c86-ac55-db0c93ff6b1a" style="max-width: 100%; height: auto; max-height: 826px;; aspect-ratio: 1666 / 826; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a></p>
 <p>最后官方给出了安装方式</p>
 <pre lang="Linux" class="notranslate"><code class="notranslate">wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
 sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
@@ -247,7 +247,7 @@ Build cuda_12.8.r12.8/compiler.35404655_0
 <p>至此，说明CUDA的环境变量已经配置完成。</p>
 <h1>cuDNN安装</h1>
 <p><a href="https://developer.nvidia.com/rdp/cudnn-archive" rel="nofollow">cuDNN下载地址</a><br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f"><img width="1628" height="878" alt="Image" src="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f" style="max-width: 100%; height: auto; max-height: 878px;"></a><br>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f"><img width="1628" height="878" alt="Image" src="https://github.com/user-attachments/assets/c9019c63-873a-4c74-9ba6-1ccb7cdfed5f" style="max-width: 100%; height: auto; max-height: 878px;; aspect-ratio: 1628 / 878; background-color: var(--bgColor-muted); border-radius: 6px" class="js-gh-image-fallback"></a><br>
 将文件放置在Ubuntu中，输入<code class="notranslate">tar -xvf cudnn-linux-x86_64-8.9.7.29_cuda12-archive.tar.xz</code>执行解压.<br>
 解压完成后输入<code class="notranslate">cd cudnn-linux-x86_64-8.9.7.29_cuda12-archive</code>进入该目录下，执行<br>
 <code class="notranslate">sudo cp -r ./lib/* /usr/local/cuda-12.8/lib64/</code><br>
@@ -363,7 +363,7 @@ if(""!=""){
     var startSite=new Date("");
     var diff=now.getTime()-startSite.getTime();
     var diffDay=Math.floor(diff/(1000*60*60*24));
-    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+    document.getElementById("runday").innerHTML="网站运行 "+diffDay+" 天"+" • ";
 }
 </script></div>
 </body>
@@ -408,6 +408,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");
