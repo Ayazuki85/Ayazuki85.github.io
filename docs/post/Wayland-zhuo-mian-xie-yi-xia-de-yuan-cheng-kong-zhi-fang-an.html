@@ -95,7 +95,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="highlight highlight-source-shell"><pre class="notranslate"><span class="pl-c"><span class="pl-c">#</span> 首先要配置好docker</span>
 sudo apt install docker.io docker-compose
 <span class="pl-c"><span class="pl-c">#</span> 将docker加入用户组</span>
-sudo usermod -aG docker <span class="pl-smi">$USERnewgrp</span> docker
+sudo usermod -aG docker <span class="pl-smi">$USER</span>
+newgrp docker
 <span class="pl-c"><span class="pl-c">#</span> 检查docker是否启动</span>
 sudo systemctl status docker
 <span class="pl-c"><span class="pl-c">#</span> 如果没有启动就启动docker</span>

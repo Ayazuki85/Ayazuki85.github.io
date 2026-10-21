@@ -12,7 +12,8 @@
 # 首先要配置好docker
 sudo apt install docker.io docker-compose
 # 将docker加入用户组
-sudo usermod -aG docker $USERnewgrp docker
+sudo usermod -aG docker $USER
+newgrp docker
 # 检查docker是否启动
 sudo systemctl status docker
 # 如果没有启动就启动docker
